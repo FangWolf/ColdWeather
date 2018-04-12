@@ -108,7 +108,7 @@ public class ChooseAreaFragment extends Fragment {
     }
 
     /*
-     * 查询全国的省市，优先从数据库查询，若没有则去服务器查询
+     * 查询全国的省，优先从数据库查询，若没有则去服务器查询
      * */
     private void queryProvinces() {
         titleText.setText("中国");
@@ -121,10 +121,10 @@ public class ChooseAreaFragment extends Fragment {
             }
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
-            currentLevel = LEVEL_CITY;
+            currentLevel = LEVEL_PROVINCE;
         } else {
             String address = "http://guolin.tech/api/china";
-            queryFromServer(address, "city");
+            queryFromServer(address, "province");
         }
     }
 
