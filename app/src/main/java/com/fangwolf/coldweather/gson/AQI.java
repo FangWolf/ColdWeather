@@ -1,9 +1,9 @@
 package com.fangwolf.coldweather.gson;
 
 public class AQI {
-    public AQICity aqiCity;
+    public AQICity city;
 
-    private class AQICity {
+    public class AQICity {
         public String aqi;
         public String pm25;
     }

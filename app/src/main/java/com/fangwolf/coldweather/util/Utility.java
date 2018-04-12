@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.fangwolf.coldweather.db.City;
 import com.fangwolf.coldweather.db.County;
 import com.fangwolf.coldweather.db.Province;
+import com.fangwolf.coldweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,5 +80,20 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    /**
+     * 将返回的json数据解析成Weather实体类
+     */
+    public static Weather handleWeatherResponse(String respose) {
+        try {
+            JSONObject jsonObject = new JSONObject(respose);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
